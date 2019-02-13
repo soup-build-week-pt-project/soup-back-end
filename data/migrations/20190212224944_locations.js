@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .unique();
     tbl
-      .integer("positions")
+      .integer("openings")
       .unsigned()
       .notNullable();
     tbl.string("address").notNullable();
