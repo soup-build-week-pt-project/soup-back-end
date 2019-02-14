@@ -1,9 +1,3 @@
-module.exports = {
-  locData,
-  allData,
-  deleted
-};
-
 const locData = [
   {
     id: 1,
@@ -68,3 +62,28 @@ const deleted = [
     location_id: 1
   }
 ];
+
+const updatedItem = {
+  id: 1,
+  item: "oranges",
+  amount: 5,
+  unit: "lbs",
+  category_id: 1,
+  location_id: 1
+};
+
+const newItem = {
+  item: "strawberries",
+  amount: "10",
+  unit: "lbs",
+  category_id: 1,
+  location_id: 3
+};
+
+module.exports = {
+  locData,
+  allData,
+  deleted,
+  updatedItem,
+  newItem
+};

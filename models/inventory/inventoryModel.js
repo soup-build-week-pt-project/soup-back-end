@@ -1,6 +1,11 @@
 const db = require("../../data/dbConfig.js");
 
-module.exports = { getInventoryByLocation, remove };
+module.exports = {
+  getInventoryByLocation,
+  remove,
+  updateInventory,
+  getItemById
+};
 
 async function getInventoryByLocation(id) {
   if (id == "all") {
@@ -10,7 +15,12 @@ async function getInventoryByLocation(id) {
   }
 }
 
-async function updateInventory(id, changes) {}
+async function updateInventory(id, changes) {
+  await db("inventory")
+    .where("id", id)
+    .update(changes);
+  return db("inventory").where("id", id);
+}
 
 async function remove(id) {
   return db("inventory")

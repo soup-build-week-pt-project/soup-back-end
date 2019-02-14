@@ -1,6 +1,13 @@
 const inventory = require("./inventoryModel.js");
 const db = require("../../data/dbConfig.js");
-const dummyData = require("./dummyData");
+const {
+  locData,
+  allData,
+  deleted,
+  updatedItem,
+  newItem,
+  getByIdItem
+} = require("./dummyData");
 
 describe("the inventory model", () => {
   beforeEach(() => {
@@ -13,7 +20,7 @@ describe("the inventory model", () => {
   describe("the getInventoryByLocation method", () => {
     it("returns the correct object", async () => {
       const items = await inventory.getInventoryByLocation(1);
-      expect(items).toEqual(dummyData.locData);
+      expect(items).toEqual(locData);
     });
     it("returns an empty array if there are no entries", async () => {
       await inventory.remove(1);
@@ -25,7 +32,7 @@ describe("the inventory model", () => {
     });
     it('returns all inventory when endpoint is "all"', async () => {
       const items = await inventory.getInventoryByLocation("all");
-      expect(items).toEqual(dummyData.allData);
+      expect(items).toEqual(allData);
     });
   });
   describe("the remove function", () => {
@@ -36,7 +43,25 @@ describe("the inventory model", () => {
     it("deletes the record from the db", async () => {
       await inventory.remove(4);
       const items = await inventory.getInventoryByLocation(1);
-      expect(items).toEqual(dummyData.deleted);
+      expect(items).toEqual(deleted);
+    });
+  });
+  describe("the updateInventory function", () => {
+    it("updates an object in the db", async () => {
+      const item = await inventory.updateInventory(1, updatedItem);
+      expect(item[0]).toEqual(updatedItem);
+    });
+  });
+  describe("getItemById function", () => {
+    it("returns the correct object", async () => {
+      const item = await inventory.getItemById(3);
+      expect(item[0]).toEqual(getByIdItem);
+    });
+  });
+  describe("the newItem function", () => {
+    it("returns the new item created", async () => {
+      const item = await inventory.newItem(newItem);
+      expect(item).toEqual(newItem);
     });
   });
 });
