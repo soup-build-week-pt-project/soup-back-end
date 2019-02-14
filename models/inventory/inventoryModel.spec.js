@@ -6,7 +6,8 @@ const {
   deleted,
   updatedItem,
   newItem,
-  getByIdItem
+  getByIdItem,
+  createdItem
 } = require("./dummyData");
 
 describe("the inventory model", () => {
@@ -55,13 +56,13 @@ describe("the inventory model", () => {
   describe("getItemById function", () => {
     it("returns the correct object", async () => {
       const item = await inventory.getItemById(3);
-      expect(item[0]).toEqual(getByIdItem);
+      expect(item).toEqual(getByIdItem);
     });
   });
   describe("the newItem function", () => {
     it("returns the new item created", async () => {
       const item = await inventory.newItem(newItem);
-      expect(item).toEqual(newItem);
+      expect(item[0]).toEqual(createdItem);
     });
   });
 });

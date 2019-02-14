@@ -74,16 +74,37 @@ const updatedItem = {
 
 const newItem = {
   item: "strawberries",
-  amount: "10",
+  amount: 10,
   unit: "lbs",
   category_id: 1,
   location_id: 3
 };
+const createdItem = {
+  item: "strawberries",
+  amount: 10,
+  unit: "lbs",
+  category_id: 1,
+  location_id: 3,
+  id: 5
+};
+
+const getByIdItem = [
+  {
+    id: 3,
+    item: "bananas",
+    amount: 3,
+    unit: "lbs",
+    category_id: 1,
+    location_id: 3
+  }
+];
 
 module.exports = {
   locData,
   allData,
   deleted,
   updatedItem,
-  newItem
+  newItem,
+  getByIdItem,
+  createdItem
 };

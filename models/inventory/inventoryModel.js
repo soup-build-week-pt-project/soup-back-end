@@ -4,7 +4,8 @@ module.exports = {
   getInventoryByLocation,
   remove,
   updateInventory,
-  getItemById
+  getItemById,
+  newItem
 };
 
 async function getInventoryByLocation(id) {
@@ -28,4 +29,11 @@ async function remove(id) {
     .del();
 }
 
-async function getItemById(id) {}
+async function getItemById(id) {
+  return db("inventory").where("id", id);
+}
+
+async function newItem(item) {
+  const ids = await db("inventory").insert(item);
+  return db("inventory").where("id", ids[0]);
+}
