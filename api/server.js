@@ -7,8 +7,8 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-const configureRoutes = require("../config/routes.js");
+const inventoryRoutes = require("../config/inventoryRoute.js");
 
-configureRoutes(server);
+inventoryRoutes(server);
 
 module.exports = server;
