@@ -9,8 +9,10 @@ server.use(express.json());
 
 const inventoryRoutes = require("../config/inventoryRoute.js");
 const userRoutes = require("../config/usersRoute.js");
+const locationRoutes = require("../config/locationsRoute.js");
 
 inventoryRoutes(server);
 userRoutes(server);
+locationRoutes(server);
 
 module.exports = server;

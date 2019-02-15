@@ -1,10 +1,16 @@
+const db = require("../data/dbConfig.js");
 const users = require("../models/users/userModel");
 const bcrypt = require("bcryptjs");
-const { generateToken } = require("../auth/authenticate");
+const {
+  authenticate,
+  requireAdmin,
+  generateToken
+} = require("../auth/authenticate");
 
 module.exports = server => {
   server.post("/users/register", register);
   server.post("/users/login", login);
+  server.get("/users/:loc", authenticate, requireAdmin, getUsersByLoc);
 };
 
 function register(req, res) {
@@ -13,14 +19,16 @@ function register(req, res) {
   creds.password = hash;
   users
     .newUser(creds)
-    .then(user => {
-      console.log(user);
+    .then(users => {
+      const user = users[0];
       const token = generateToken(user);
+      console.log(user);
       res.status(201).json({
         username: user.username,
+        name: user.name,
         location: user.loc_id,
         role: user.role_id,
-        token
+        token: token
       });
     })
     .catch(err => {
@@ -44,5 +52,21 @@ function login(req, res) {
     })
     .catch(err => {
       res.status(500).send(err);
+    });
+}
+
+function getUsersByLoc(req, res) {
+  const { loc } = req.params;
+  users
+    .getUsersByLocation(loc)
+    .then(users => {
+      if (users) {
+        res.status(200).json(users);
+      } else {
+        res.status(404).json({ message: "Invalid location" });
+      }
+    })
+    .catch(err => {
+      res.status(400).send(err);
     });
 }

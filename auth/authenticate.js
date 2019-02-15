@@ -20,14 +20,18 @@ function authenticate(req, res, next) {
     });
   } else {
     return res.status(401).json({
-      error: "No token provided, must be set on the Authorization Header"
+      message: "No token provided, must be set on the Authorization Header"
     });
   }
 }
 
 function requireAdmin(req, res, next) {
   const role = req.get("role");
-  if (role == 1) {
+  if (!role) {
+    res.status(401).json({
+      message: "No role provided, must be set as role on Header."
+    });
+  } else if (role == 1) {
     next();
   } else {
     res
