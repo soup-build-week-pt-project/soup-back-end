@@ -1,5 +1,5 @@
-const inventory = require("../models/inventory/inventoryModel");
-const { authenticate, requireAdmin } = require("../auth/authenticate");
+const inventory = require("../../models/inventory/inventoryModel");
+const { authenticate, requireAdmin } = require("../../auth/authenticate");
 
 module.exports = server => {
   server.get("/inventory/:id", authenticate, requireAdmin, getByLoc),

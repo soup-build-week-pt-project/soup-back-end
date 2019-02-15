@@ -1,11 +1,11 @@
-const db = require("../data/dbConfig.js");
-const users = require("../models/users/userModel");
+const db = require("../../data/dbConfig.js");
+const users = require("../../models/users/userModel");
 const bcrypt = require("bcryptjs");
 const {
   authenticate,
   requireAdmin,
   generateToken
-} = require("../auth/authenticate");
+} = require("../../auth/authenticate");
 
 module.exports = server => {
   server.post("/users/register", register);
