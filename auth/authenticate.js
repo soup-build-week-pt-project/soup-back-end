@@ -33,7 +33,7 @@ function requireAdmin(req, res, next) {
   });
   if (!decoded.role) {
     res.status(401).json({
-      message: "No role provided, must be set as role on Header."
+      message: "No role provided."
     });
   } else if (decoded.role == 1) {
     next();

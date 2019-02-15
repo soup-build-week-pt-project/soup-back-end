@@ -2,14 +2,14 @@ const inventory = require("../../models/inventory/inventoryModel");
 const { authenticate, requireAdmin } = require("../../auth/authenticate");
 
 module.exports = server => {
-  server.get("/inventory/:id", authenticate, requireAdmin, getByLoc),
-    server.get("/inventory/:id/:item", authenticate, requireAdmin, getItemById),
-    server.post("/inventory/:id", authenticate, requireAdmin, newItem),
-    server.put("/inventory/:item", authenticate, requireAdmin, updateItem),
-    server.delete("/inventory/:item", authenticate, requireAdmin, deleteItem);
+  server.get("/inventory/:id", requireAdmin, getByLoc),
+    server.get("/inventory/:id/:item", requireAdmin, getItemById),
+    server.post("/inventory/:id", requireAdmin, newItem),
+    server.put("/inventory/:item", requireAdmin, updateItem),
+    server.delete("/inventory/:item", requireAdmin, deleteItem);
 };
 
-//ALL INVENTORY ENDPOINTS REQUIRE A TOKEN AND A ROLE IN THE HEADER.
+//ALL INVENTORY ENDPOINTS REQUIRE A TOKEN.
 
 //requires a location id. "all" in place of id will return all locations. returns an array of objects.
 function getByLoc(req, res) {
