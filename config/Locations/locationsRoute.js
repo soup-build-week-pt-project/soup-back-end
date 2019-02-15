@@ -5,6 +5,7 @@ module.exports = server => {
   server.get("/locations", authenticate, getLocations);
 };
 
+//returns an array of all locations. REQUIRES A TOKEN IN THE HEADER.
 function getLocations(req, res) {
   locations
     .getLocations()

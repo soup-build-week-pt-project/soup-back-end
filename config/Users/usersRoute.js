@@ -13,6 +13,7 @@ module.exports = server => {
   server.get("/users/:loc", authenticate, requireAdmin, getUsersByLoc);
 };
 
+//requires an object with all required user keys. stores password in a hash, returns an object containing username, name, loc, role, and a token.
 function register(req, res) {
   const creds = req.body;
   const hash = bcrypt.hashSync(creds.password, 16);
@@ -37,6 +38,7 @@ function register(req, res) {
     });
 }
 
+//requires a username and password. returns a message and a token.
 function login(req, res) {
   const credentials = req.body;
   db("users")
@@ -55,6 +57,7 @@ function login(req, res) {
     });
 }
 
+//requires a location id. "all" can be used in place of an id to get all users. returns an array of user objects. REQUIRES A TOKEN AND ROLE IN HEADER.
 function getUsersByLoc(req, res) {
   const { loc } = req.params;
   users

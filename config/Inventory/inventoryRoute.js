@@ -9,6 +9,9 @@ module.exports = server => {
     server.delete("/inventory/:item", authenticate, requireAdmin, deleteItem);
 };
 
+//ALL INVENTORY ENDPOINTS REQUIRE A TOKEN AND A ROLE IN THE HEADER.
+
+//requires a location id. "all" in place of id will return all locations. returns an array of objects.
 function getByLoc(req, res) {
   const { id } = req.params;
   inventory
@@ -25,6 +28,7 @@ function getByLoc(req, res) {
     });
 }
 
+//requires an item id, returns a single object
 function getItemById(req, res) {
   const id = req.params.id;
   const item = req.params.item;
@@ -47,6 +51,7 @@ function getItemById(req, res) {
     });
 }
 
+//requires an object representing item to be created, returns an array of objects where id == newitem.id
 function newItem(req, res) {
   const { id } = req.params;
   const item = req.body;
@@ -70,6 +75,7 @@ function newItem(req, res) {
   }
 }
 
+//requires an item id and an updated item. returns updated item as a single object.
 function updateItem(req, res) {
   const { item } = req.params;
   const updated = req.body;
@@ -86,6 +92,8 @@ function updateItem(req, res) {
       res.status(400).send(err);
     });
 }
+
+//requires an item id, returns the number of records deleted.
 function deleteItem(req, res) {
   const { item } = req.params;
   inventory
