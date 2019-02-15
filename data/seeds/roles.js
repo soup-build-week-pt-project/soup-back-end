@@ -4,10 +4,6 @@ exports.seed = function(knex, Promise) {
     .truncate()
     .then(function() {
       // Inserts seed entries
-      return knex("roles").insert([
-        { role: "admin" },
-        { role: "volunteer" },
-        { role: "read_only" }
-      ]);
+      return knex("roles").insert([{ role: "admin" }, { role: "volunteer" }]);
     });
 };

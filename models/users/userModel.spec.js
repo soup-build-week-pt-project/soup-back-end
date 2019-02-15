@@ -3,7 +3,6 @@ const db = require("../../data/dbConfig.js");
 const {
   locData,
   allData,
-  deleted,
   updatedUser,
   newUser,
   getByIdUser,
@@ -15,7 +14,7 @@ describe("the user model", () => {
   beforeEach(() => {
     return db.migrate.rollback().then(() => {
       return db.migrate.latest().then(() => {
-        return db.seed.run();
+        return db.insert(allData).into("users");
       });
     });
   });

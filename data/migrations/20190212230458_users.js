@@ -4,6 +4,11 @@ exports.up = function(knex, Promise) {
     tbl.string("name").notNullable();
     tbl.string("title").notNullable();
     tbl
+      .string("username", 255)
+      .notNullable()
+      .unique();
+    tbl.string("password", 255).notNullable();
+    tbl
       .integer("role_id")
       .unsigned()
       .notNullable();

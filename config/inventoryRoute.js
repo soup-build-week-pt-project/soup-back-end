@@ -1,13 +1,12 @@
 const inventory = require("../models/inventory/inventoryModel");
-// const bcrypt = require("bcryptjs");
-// const { authenticate, generateToken } = require("../auth/authenticate");
+const { authenticate, requireAdmin } = require("../auth/authenticate");
 
 module.exports = server => {
-  server.get("/inventory/:id", getByLoc),
-    server.get("/inventory/:id/:item", getItemById),
-    server.post("/inventory/:id", newItem),
-    server.put("/inventory/:item", updateItem),
-    server.delete("/inventory/:item", deleteItem);
+  server.get("/inventory/:id", authenticate, requireAdmin, getByLoc),
+    server.get("/inventory/:id/:item", authenticate, requireAdmin, getItemById),
+    server.post("/inventory/:id", authenticate, requireAdmin, newItem),
+    server.put("/inventory/:item", authenticate, requireAdmin, updateItem),
+    server.delete("/inventory/:item", authenticate, requireAdmin, deleteItem);
 };
 
 function getByLoc(req, res) {
