@@ -26,12 +26,16 @@ function authenticate(req, res, next) {
 }
 
 function requireAdmin(req, res, next) {
-  const role = req.get("role");
-  if (!role) {
+  const token = req.get("Authorization");
+  const decoded = jwt.verify(token, jwtKey, (err, decoded) => {
+    if (err) return res.status(401).json(err);
+    else return decoded;
+  });
+  if (!decoded.role) {
     res.status(401).json({
       message: "No role provided, must be set as role on Header."
     });
-  } else if (role == 1) {
+  } else if (decoded.role == 1) {
     next();
   } else {
     res
@@ -42,7 +46,8 @@ function requireAdmin(req, res, next) {
 
 function generateToken(user) {
   const payload = {
-    username: user.username
+    username: user.username,
+    role: user.role_id
   };
   const options = {
     expiresIn: "1h",
