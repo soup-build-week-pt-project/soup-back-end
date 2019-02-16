@@ -43,7 +43,14 @@ function login(req, res) {
     .then(user => {
       if (user && bcrypt.compareSync(credentials.password, user.password)) {
         const token = generateToken(user);
-        res.status(200).json({ message: `Welcome ${user.username}`, token });
+      console.log(user);
+      res.status(200).json({
+        username: user.username,
+        name: user.name,
+        location: user.loc_id,
+        role: user.role_id,
+        token: token
+      });
       } else {
         res.status(401).json({ message: "access denied" });
       }
