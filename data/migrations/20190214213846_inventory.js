@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     tbl.string("unit").notNullable();
     tbl.string('bw_img', 255);
     tbl.string('color_img', 255);
-    tbl.integer('max_quan').unsigned();
+    tbl.integer('min_quan').unsigned();
     tbl
       .integer("category_id")
       .unsigned()
