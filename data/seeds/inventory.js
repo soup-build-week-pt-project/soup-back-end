@@ -11,7 +11,10 @@ exports.seed = function(knex, Promise) {
           amount: 3,
           unit: "lbs",
           category_id: 1,
-          location_id: 1
+          location_id: 1,
+          color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+          bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+          max_quan: 100
         },
         {
           id: 2,
@@ -19,7 +22,10 @@ exports.seed = function(knex, Promise) {
           amount: 3,
           unit: "lbs",
           category_id: 1,
-          location_id: 2
+          location_id: 2,
+          color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+          bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+          max_quan: 100
         },
         {
           id: 3,
@@ -27,7 +33,10 @@ exports.seed = function(knex, Promise) {
           amount: 3,
           unit: "lbs",
           category_id: 1,
-          location_id: 3
+          location_id: 3,
+          color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+          bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+          max_quan: 100
         },
         {
           id: 4,
@@ -35,7 +44,10 @@ exports.seed = function(knex, Promise) {
           amount: 3,
           unit: "lbs",
           category_id: 2,
-          location_id: 1
+          location_id: 1,
+          color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+          bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+          max_quan: 100
         }
       ]);
     });

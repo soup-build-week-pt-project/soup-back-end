@@ -4,6 +4,9 @@ exports.up = function(knex, Promise) {
     tbl.string("item").notNullable();
     tbl.float("amount").notNullable();
     tbl.string("unit").notNullable();
+    tbl.string('bw_img', 255);
+    tbl.string('color_img', 255);
+    tbl.integer('max_quan').unsigned();
     tbl
       .integer("category_id")
       .unsigned()
