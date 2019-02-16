@@ -3,7 +3,6 @@ const db = require("../../data/dbConfig.js");
 module.exports = {
   getUsersByLocation,
   remove,
-  updateUser,
   getUserById,
   newUser,
   getUserByRole
@@ -11,17 +10,20 @@ module.exports = {
 
 async function getUsersByLocation(id) {
   if (id == "all") {
-    return db("users");
+    return db("users").select(
+      "name",
+      "username",
+      "email",
+      "loc_id",
+      "role_id",
+      "title",
+      "id"
+    );
   } else {
-    return db("users").where("loc_id", id);
+    return db("users")
+      .select("name", "username", "email", "loc_id", "role_id", "title", "id")
+      .where("loc_id", id);
   }
-}
-
-async function updateUser(id, changes) {
-  await db("users")
-    .where("id", id)
-    .update(changes);
-  return db("users").where("id", id);
 }
 
 async function remove(id) {
@@ -31,14 +33,20 @@ async function remove(id) {
 }
 
 async function getUserById(id) {
-  return db("users").where("id", id);
+  return db("users")
+    .select("name", "username", "email", "loc_id", "role_id", "title", "id")
+    .where("id", id);
 }
 
 async function newUser(user) {
   const ids = await db("users").insert(user);
-  return db("users").where("id", ids[0]);
+  return db("users")
+    .select("name", "username", "email", "loc_id", "role_id", "title", "id")
+    .where("id", ids[0]);
 }
 
 async function getUserByRole(id) {
-  return db("users").where("role_id", id);
+  return db("users")
+    .select("name", "username", "email", "loc_id", "role_id", "title", "id")
+    .where("role_id", id);
 }

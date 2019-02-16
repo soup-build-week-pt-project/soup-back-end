@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 server.use(helmet());
 server.use(cors());
+// server.options("*", cors());
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());

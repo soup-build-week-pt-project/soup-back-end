@@ -3,11 +3,11 @@ const db = require("../../data/dbConfig.js");
 const {
   locData,
   allData,
-  updatedUser,
   newUser,
   getByIdUser,
   createdUser,
-  volunteers
+  volunteers,
+  allReturn
 } = require("./dummyData");
 
 describe("the user model", () => {
@@ -33,19 +33,13 @@ describe("the user model", () => {
     });
     it('returns all users when endpoint is "all"', async () => {
       const user = await users.getUsersByLocation("all");
-      expect(user).toEqual(allData);
+      expect(user).toEqual(allReturn);
     });
   });
   describe("the remove function", () => {
     it("returns the number of records deleted", async () => {
       const user = await users.remove(2);
       expect(user).toBe(1);
-    });
-  });
-  describe("the updateUser function", () => {
-    it("updates an object in the db", async () => {
-      const user = await users.updateUser(1, updatedUser);
-      expect(user[0]).toEqual(updatedUser);
     });
   });
   describe("getUserById function", () => {
