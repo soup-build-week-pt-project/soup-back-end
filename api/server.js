@@ -12,9 +12,9 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(bodyParser.text());
 
-const inventoryRoutes = require("../config/Inventory/inventoryRoute.js");
-const userRoutes = require("../config/Users/usersRoute.js");
-const locationRoutes = require("../config/Locations/locationsRoute.js");
+const inventoryRoutes = require("../config/inventoryRoute.js");
+const userRoutes = require("../config/usersRoute.js");
+const locationRoutes = require("../config/locationsRoute.js");
 
 inventoryRoutes(server);
 userRoutes(server);

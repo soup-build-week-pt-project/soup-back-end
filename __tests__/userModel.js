@@ -1,5 +1,5 @@
-const users = require("./userModel.js");
-const db = require("../../data/dbConfig.js");
+const users = require("../models/userModel.js");
+const db = require("../data/dbConfig.js");
 const {
   locData,
   allData,
@@ -8,7 +8,7 @@ const {
   createdUser,
   volunteers,
   allReturn
-} = require("./dummyData");
+} = require("../dummyData/userModelData.js");
 
 describe("the user model", () => {
   beforeEach(() => {

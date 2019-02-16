@@ -1,6 +1,6 @@
 const request = require("supertest");
-const db = require("../../data/dbConfig");
-const server = require("../../api/server");
+const db = require("../data/dbConfig");
+const server = require("../api/server");
 const {
   locData,
   allData,
@@ -9,7 +9,7 @@ const {
   newItem,
   getByIdItem,
   createdItem
-} = require("./dummyData");
+} = require("../dummyData/invRouteData.js");
 
 describe("the inventory routes", () => {
   beforeEach(() => {

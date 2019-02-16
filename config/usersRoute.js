@@ -1,7 +1,7 @@
-const db = require("../../data/dbConfig.js");
-const users = require("../../models/users/userModel");
+const db = require("../data/dbConfig.js");
+const users = require("../models/userModel");
 const bcrypt = require("bcryptjs");
-const { requireAdmin, generateToken } = require("../../auth/authenticate");
+const { requireAdmin, generateToken } = require("../auth/authenticate");
 
 module.exports = server => {
   server.post("/users/register", register);
@@ -34,7 +34,7 @@ function register(req, res) {
     });
 }
 
-//requires a username and password. returns a message and a token.
+//requires a username and password. returns user data and a token.
 function login(req, res) {
   const credentials = req.body;
   db("users")

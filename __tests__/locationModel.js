@@ -1,6 +1,6 @@
-const locations = require("./locationModel.js");
-const db = require("../../data/dbConfig.js");
-const { locationData } = require("./dummyData");
+const locations = require("../models/locationModel.js");
+const db = require("../data/dbConfig.js");
+const { locationData } = require("../dummyData/locModelData.js");
 
 describe("the location model", () => {
   beforeEach(() => {

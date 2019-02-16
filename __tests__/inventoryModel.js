@@ -1,4 +1,4 @@
-const inventory = require("./inventoryModel.js");
+const inventory = require("../models/inventoryModel.js");
 const db = require("../../data/dbConfig.js");
 const {
   locData,
@@ -8,7 +8,7 @@ const {
   newItem,
   getByIdItem,
   createdItem
-} = require("./dummyData");
+} = require("../dummyData/invModelData.js");
 
 describe("the inventory model", () => {
   beforeEach(() => {
