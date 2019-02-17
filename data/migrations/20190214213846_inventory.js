@@ -4,9 +4,13 @@ exports.up = function(knex, Promise) {
     tbl.string("item").notNullable();
     tbl.float("amount").notNullable();
     tbl.string("unit").notNullable();
-    tbl.string('bw_img', 255);
-    tbl.string('color_img', 255);
-    tbl.integer('min_quan').unsigned();
+    tbl.string("bw_img", 255);
+    tbl.string("color_img", 255);
+    tbl
+      .integer("min_quan")
+      .defaultTo(30)
+      .unsigned();
+
     tbl
       .integer("category_id")
       .unsigned()

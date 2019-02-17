@@ -17,10 +17,10 @@ function getByLoc(req, res) {
   const { id } = req.params;
   inventory
     .getInventoryByLocation(id)
-    .then(items => {
+    .then(async items => {
       if (items.length) {
         console.log(items);
-        items = inventory.getCats(items);
+        items = await inventory.getCats(items);
         console.log(items);
         res.status(200).json(items);
       } else {

@@ -54,7 +54,8 @@ async function getCats(items) {
     "Other"
   ];
   let withCats = items.map(item => {
-    return (item.category_id = cats[item.category_id - 1]);
+    item.category_id = cats[item.category_id - 1];
+    return item;
   });
   return withCats;
 }
