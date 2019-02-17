@@ -2,18 +2,24 @@ const locData = [
   {
     id: 1,
     item: "oranges",
-    amount: 3,
+    amount: 50,
     unit: "lbs",
     category_id: 1,
-    location_id: 1
+    location_id: 1,
+    color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+    bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+    min_quan: 20
   },
   {
     id: 4,
     item: "rice",
-    amount: 3,
+    amount: 100,
     unit: "lbs",
     category_id: 2,
-    location_id: 1
+    location_id: 1,
+    color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+    bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+    min_quan: 40
   }
 ];
 
@@ -21,34 +27,46 @@ const allData = [
   {
     id: 1,
     item: "oranges",
-    amount: 3,
+    amount: 50,
     unit: "lbs",
     category_id: 1,
-    location_id: 1
+    location_id: 1,
+    color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+    bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+    min_quan: 20
   },
   {
     id: 2,
     item: "apples",
-    amount: 3,
+    amount: 10,
     unit: "lbs",
     category_id: 1,
-    location_id: 2
+    location_id: 2,
+    color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+    bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+    min_quan: 20
   },
   {
     id: 3,
     item: "bananas",
-    amount: 3,
+    amount: 60,
     unit: "lbs",
     category_id: 1,
-    location_id: 3
+    location_id: 3,
+    color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+    bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+    min_quan: 20
   },
   {
     id: 4,
     item: "rice",
-    amount: 3,
+    amount: 100,
     unit: "lbs",
     category_id: 2,
-    location_id: 1
+    location_id: 1,
+    color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+    bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+    min_quan: 40
   }
 ];
 
@@ -56,20 +74,26 @@ const deleted = [
   {
     id: 1,
     item: "oranges",
-    amount: 3,
+    amount: 50,
     unit: "lbs",
     category_id: 1,
-    location_id: 1
+    location_id: 1,
+    color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+    bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+    min_quan: 20
   }
 ];
 
 const updatedItem = {
   id: 1,
   item: "oranges",
-  amount: 5,
+  amount: 70,
   unit: "lbs",
   category_id: 1,
-  location_id: 1
+  location_id: 1,
+  color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+  bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+  min_quan: 20
 };
 
 const newItem = {
@@ -85,6 +109,9 @@ const createdItem = {
   unit: "lbs",
   category_id: 1,
   location_id: 3,
+  min_quan: 30,
+  bw_img: null,
+  color_img: null,
   id: 5
 };
 
@@ -92,10 +119,13 @@ const getByIdItem = [
   {
     id: 3,
     item: "bananas",
-    amount: 3,
+    amount: 60,
     unit: "lbs",
     category_id: 1,
-    location_id: 3
+    location_id: 3,
+    color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+    bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+    min_quan: 20
   }
 ];
 

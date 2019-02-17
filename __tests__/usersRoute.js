@@ -34,6 +34,7 @@ describe("the users route handlers", () => {
       expect(response.status).toBe(400);
     });
     it("returns the an object with new user info", async () => {
+      jest.setTimeout(30000);
       const response = await request(server)
         .post("/users/register")
         .send(newUser);

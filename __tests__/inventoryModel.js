@@ -1,5 +1,5 @@
 const inventory = require("../models/inventoryModel.js");
-const db = require("../../data/dbConfig.js");
+const db = require("../data/dbConfig.js");
 const {
   locData,
   allData,

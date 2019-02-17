@@ -51,7 +51,6 @@ function requireAdmin(req, res, next) {
     }
   }
 }
-
 function generateToken(user) {
   const payload = {
     username: user.username,
@@ -63,8 +62,3 @@ function generateToken(user) {
   };
   return jwt.sign(payload, jwtKey, options);
 }
-
-// else {
-//   const key = "test";
-//   return jwt.sign(payload, key, options);
-// }

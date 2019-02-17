@@ -19,9 +19,7 @@ function getByLoc(req, res) {
     .getInventoryByLocation(id)
     .then(async items => {
       if (items.length) {
-        console.log(items);
         items = await inventory.getCats(items);
-        console.log(items);
         res.status(200).json(items);
       } else {
         res.status(404).json({ message: "No items for that location." });
@@ -45,7 +43,6 @@ function getItemById(req, res) {
           db("categories")
             .where("id", result[0].category_id)
             .then(cat => {
-              console.log(cat);
               result[0].category_id = cat[0].category;
               res.status(200).json(result);
             });
