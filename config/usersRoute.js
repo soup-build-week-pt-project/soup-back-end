@@ -25,8 +25,11 @@ function register(req, res) {
     users
       .newUser(creds)
       .then(users => {
+        console.log(users);
         const user = users[0];
+        console.log(user);
         const token = generateToken(user);
+        console.log(token);
         res.status(201).json({
           username: user.username,
           name: user.name,

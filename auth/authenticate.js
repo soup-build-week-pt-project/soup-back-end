@@ -61,10 +61,10 @@ function generateToken(user) {
     expiresIn: "1h",
     jwtid: "12345"
   };
-  if (process.env.DB_ENV != "testing") {
-    return jwt.sign(payload, jwtkey, options);
-  } else {
-    const key = "test";
-    return jwt.sign(payload, key, options);
-  }
+  return jwt.sign(payload, jwtKey, options);
 }
+
+// else {
+//   const key = "test";
+//   return jwt.sign(payload, key, options);
+// }
