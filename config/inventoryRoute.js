@@ -1,3 +1,4 @@
+const db = require("../data/dbConfig.js");
 const inventory = require("../models/inventoryModel");
 const { requireAdmin } = require("../auth/authenticate");
 
@@ -18,6 +19,9 @@ function getByLoc(req, res) {
     .getInventoryByLocation(id)
     .then(items => {
       if (items.length) {
+        console.log(items);
+        items = inventory.getCats(items);
+        console.log(items);
         res.status(200).json(items);
       } else {
         res.status(404).json({ message: "No items for that location." });
@@ -38,7 +42,13 @@ function getItemById(req, res) {
       if (items.length) {
         let result = items.filter(inv => inv.id == item);
         if (result.length) {
-          res.status(200).json(result);
+          db("categories")
+            .where("id", result[0].category_id)
+            .then(cat => {
+              result[0].category_id = cat[0].category;
+              res.status(200).json(result);
+            });
+          // res.status(200).json(result);
         } else {
           res.status(404).json({ message: "Item ID not found" });
         }
