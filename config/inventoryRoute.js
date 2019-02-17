@@ -45,10 +45,10 @@ function getItemById(req, res) {
           db("categories")
             .where("id", result[0].category_id)
             .then(cat => {
+              console.log(cat);
               result[0].category_id = cat[0].category;
               res.status(200).json(result);
             });
-          // res.status(200).json(result);
         } else {
           res.status(404).json({ message: "Item ID not found" });
         }
