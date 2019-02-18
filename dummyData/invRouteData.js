@@ -83,13 +83,24 @@ const deleted = [
     min_quan: 20
   }
 ];
+const update = {
+  id: 1,
+  item: "oranges",
+  amount: 5,
+  unit: "lbs",
+  category_id: 1,
+  location_id: 1,
+  color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
+  bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
+  min_quan: 20
+};
 
 const updatedItem = {
   id: 1,
   item: "oranges",
   amount: 5,
   unit: "lbs",
-  category_id: 1,
+  category_id: "Fruit",
   location_id: 1,
   color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
   bw_img: "https://image.flaticon.com/icons/svg/135/135389.svg",
@@ -111,7 +122,7 @@ const createdItem = [
     item: "strawberries",
     amount: 10,
     unit: "lbs",
-    category_id: 1,
+    category_id: "Fruit",
     location_id: 3,
     id: 5,
     color_img: "https://image.flaticon.com/icons/svg/135/135620.svg",
@@ -147,5 +158,6 @@ module.exports = {
   newItem,
   getByIdItem,
   createdItem,
-  badItem
+  badItem,
+  update
 };

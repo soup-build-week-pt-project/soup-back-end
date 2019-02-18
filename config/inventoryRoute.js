@@ -45,6 +45,9 @@ function getItemById(req, res) {
             .then(cat => {
               result[0].category_id = cat[0].category;
               res.status(200).json(result);
+            })
+            .catch(err => {
+              res.status(400).json({ message: "category id not found" });
             });
         } else {
           res.status(404).json({ message: "Item ID not found" });
@@ -65,9 +68,17 @@ function newItem(req, res) {
   if (item.location_id == id) {
     inventory
       .newItem(item)
-      .then(response => {
-        if (response) {
-          res.status(201).json(response);
+      .then(item => {
+        if (item.length) {
+          db("categories")
+            .where("id", item[0].category_id)
+            .then(cat => {
+              item[0].category_id = cat[0].category;
+              res.status(201).json(item);
+            })
+            .catch(err => {
+              res.status(400).json({ message: "category id not found" });
+            });
         } else {
           res.status(400).json({ message: "failed to create new item" });
         }
@@ -82,7 +93,7 @@ function newItem(req, res) {
   }
 }
 
-//requires an item id and an updated item. returns updated item as a single object.
+//requires an item id and an updated item. returns updated item as an array.
 function updateItem(req, res) {
   const { item } = req.params;
   const updated = req.body;
@@ -90,7 +101,15 @@ function updateItem(req, res) {
     .updateInventory(item, updated)
     .then(item => {
       if (item.length) {
-        res.status(202).json(item[0]);
+        db("categories")
+          .where("id", item[0].category_id)
+          .then(cat => {
+            item[0].category_id = cat[0].category;
+            res.status(202).json(item[0]);
+          })
+          .catch(err => {
+            res.status(400).json({ message: "category id not found" });
+          });
       } else {
         res.status(400).json({ message: "record not updated" });
       }

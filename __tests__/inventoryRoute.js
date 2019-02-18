@@ -8,10 +8,12 @@ const {
   updatedItem,
   newItem,
   getByIdItem,
-  createdItem
+  createdItem,
+  update
 } = require("../dummyData/invRouteData.js");
 
 describe("the inventory routes", () => {
+  jest.setTimeout(30000);
   beforeEach(() => {
     return db.migrate.rollback().then(() => {
       return db.migrate.latest().then(() => {
@@ -79,7 +81,7 @@ describe("the inventory routes", () => {
     it("returns a 202 on success", async () => {
       const response = await request(server)
         .put("/inventory/1")
-        .send(updatedItem);
+        .send(update);
       expect(response.status).toBe(202);
     });
     it("returns a 400 if not successful", async () => {
@@ -89,7 +91,7 @@ describe("the inventory routes", () => {
     it("returns the updated item as a single object", async () => {
       const response = await request(server)
         .put("/inventory/1")
-        .send(updatedItem);
+        .send(update);
       expect(JSON.parse(response.text)).toEqual(updatedItem);
     });
   });
