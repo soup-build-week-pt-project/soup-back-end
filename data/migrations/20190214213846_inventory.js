@@ -10,7 +10,6 @@ exports.up = function(knex, Promise) {
       .integer("min_quan")
       .defaultTo(30)
       .unsigned();
-
     tbl
       .integer("category_id")
       .unsigned()
@@ -18,7 +17,7 @@ exports.up = function(knex, Promise) {
     tbl
       .foreign("category_id")
       .references("id")
-      .on("categories");
+      .inTable("categories");
     tbl
       .integer("location_id")
       .unsigned()
@@ -26,7 +25,7 @@ exports.up = function(knex, Promise) {
     tbl
       .foreign("location_id")
       .references("id")
-      .on("locations");
+      .inTable("locations");
   });
 };
 

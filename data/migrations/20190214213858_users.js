@@ -20,11 +20,11 @@ exports.up = function(knex, Promise) {
     tbl
       .foreign("role_id")
       .references("id")
-      .on("roles");
+      .inTable("roles");
     tbl
       .foreign("loc_id")
       .references("id")
-      .on("locations");
+      .inTable("locations");
   });
 };
 
