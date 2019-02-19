@@ -29,13 +29,13 @@ module.exports = {
     }
   },
   production: {
-    client: 'pg',
+    client: "pg",
     connection: `${process.env.DATABASE_URL}`,
     ssl: true,
     migrations: {
-      directory: './database/migrations',
-      tableName: 'dbmigrations'
+      directory: "./data/migrations",
+      tableName: "dbmigrations"
     },
-    seeds: { directory: './database/seeds' }
+    seeds: { directory: "./data/seeds" }
   }
 };
