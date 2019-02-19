@@ -10,20 +10,22 @@ exports.up = function(knex, Promise) {
       .integer("min_quan")
       .defaultTo(30)
       .unsigned();
+    // tbl
+    //   .integer("category_id")
+    //   .unsigned()
+    //   .notNullable();
     tbl
       .integer("category_id")
       .unsigned()
-      .notNullable();
-    tbl
-      .foreign("category_id")
       .references("id")
       .inTable("categories");
+    // tbl
+    //   .integer("location_id")
+    //   .unsigned()
+    //   .notNullable();
     tbl
       .integer("location_id")
       .unsigned()
-      .notNullable();
-    tbl
-      .foreign("location_id")
       .references("id")
       .inTable("locations");
   });
