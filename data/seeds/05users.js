@@ -14,27 +14,27 @@ exports.seed = function(knex, Promise) {
           email: "jess@soup.com",
           role_id: 1,
           loc_id: 1,
-          username: "jess",
+          username: "jesstest",
           password: bcrypt.hashSync("test123", 16)
         },
         {
           id: 2,
-          name: "Test Employee",
-          title: "Volunteer",
-          email: "test@soup.com",
-          role_id: 2,
+          name: "Ed",
+          title: "Developer",
+          email: "ed@soup.com",
+          role_id: 1,
           loc_id: 3,
-          username: "test",
+          username: "edtest",
           password: bcrypt.hashSync("test123", 16)
         },
         {
           id: 3,
-          name: "Jack",
+          name: "Greg",
           title: "Chef",
-          email: "jack@soup.com",
+          email: "greg@soup.com",
           role_id: 1,
           loc_id: 3,
-          username: "jack",
+          username: "gregtest",
           password: bcrypt.hashSync("test123", 16)
         },
         {
