@@ -17,7 +17,7 @@ exports.seed = function(knex, Promise) {
         {
           id: 2,
           name: "Test Kitchen 2",
-          openings: 3,
+          openings: 0,
           address: "456 Test St.",
           address2: "Suite 2",
           city: "Boston",
