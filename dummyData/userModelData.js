@@ -3,6 +3,7 @@ const allData = [
     id: 1,
     name: "Jess",
     title: "Office Manager",
+    email: "jess@soup.com",
     role_id: 1,
     loc_id: 1,
     username: "jess",
@@ -12,6 +13,7 @@ const allData = [
     id: 2,
     name: "Test Employee",
     title: "Volunteer",
+    email: "test@soup.com",
     role_id: 2,
     loc_id: 3,
     username: "test",
@@ -21,6 +23,7 @@ const allData = [
     id: 3,
     name: "Jack",
     title: "Chef",
+    email: "jack@soup.com",
     role_id: 1,
     loc_id: 3,
     username: "jack",
@@ -30,10 +33,50 @@ const allData = [
     id: 4,
     name: "Mike",
     title: "Volunteer",
+    email: "mike@soup.com",
     role_id: 2,
     loc_id: 1,
     username: "mike",
     password: "test123"
+  }
+];
+
+const allReturn = [
+  {
+    id: 1,
+    name: "Jess",
+    title: "Office Manager",
+    email: "jess@soup.com",
+    role_id: 1,
+    loc_id: 1,
+    username: "jess"
+  },
+  {
+    id: 2,
+    name: "Test Employee",
+    title: "Volunteer",
+    email: "test@soup.com",
+    role_id: 2,
+    loc_id: 3,
+    username: "test"
+  },
+  {
+    id: 3,
+    name: "Jack",
+    title: "Chef",
+    email: "jack@soup.com",
+    role_id: 1,
+    loc_id: 3,
+    username: "jack"
+  },
+  {
+    id: 4,
+    name: "Mike",
+    title: "Volunteer",
+    email: "mike@soup.com",
+    role_id: 2,
+    loc_id: 1,
+    username: "mike"
   }
 ];
 
@@ -42,35 +85,26 @@ const locData = [
     id: 1,
     name: "Jess",
     title: "Office Manager",
+    email: "jess@soup.com",
     role_id: 1,
     loc_id: 1,
-    username: "jess",
-    password: "test123"
+    username: "jess"
   },
   {
     id: 4,
     name: "Mike",
     title: "Volunteer",
+    email: "mike@soup.com",
     role_id: 2,
     loc_id: 1,
-    username: "mike",
-    password: "test123"
+    username: "mike"
   }
 ];
-
-const updatedUser = {
-  id: 1,
-  name: "Jess Harrison",
-  title: "Office Manager",
-  role_id: 1,
-  loc_id: 1,
-  username: "jess",
-  password: "test123"
-};
 
 const newUser = {
   name: "Kendall E",
   title: "cook",
+  email: "kendall@soup.com",
   role_id: 3,
   loc_id: 2,
   username: "kendall",
@@ -80,10 +114,10 @@ const newUser = {
 createdUser = {
   name: "Kendall E",
   title: "cook",
+  email: "kendall@soup.com",
   role_id: 3,
   loc_id: 2,
   username: "kendall",
-  password: "test123",
   id: 5
 };
 
@@ -92,10 +126,10 @@ getByIdUser = [
     id: 3,
     name: "Jack",
     title: "Chef",
+    email: "jack@soup.com",
     role_id: 1,
     loc_id: 3,
-    username: "jack",
-    password: "test123"
+    username: "jack"
   }
 ];
 
@@ -104,27 +138,27 @@ volunteers = [
     id: 2,
     name: "Test Employee",
     title: "Volunteer",
+    email: "test@soup.com",
     role_id: 2,
     loc_id: 3,
-    username: "test",
-    password: "test123"
+    username: "test"
   },
   {
     id: 4,
     name: "Mike",
     title: "Volunteer",
+    email: "mike@soup.com",
     role_id: 2,
     loc_id: 1,
-    username: "mike",
-    password: "test123"
+    username: "mike"
   }
 ];
 module.exports = {
   locData,
   allData,
-  updatedUser,
   newUser,
   getByIdUser,
   createdUser,
-  volunteers
+  volunteers,
+  allReturn
 };

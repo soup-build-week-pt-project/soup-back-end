@@ -51,14 +51,13 @@ function requireAdmin(req, res, next) {
     }
   }
 }
-
 function generateToken(user) {
   const payload = {
     username: user.username,
     role: user.role_id
   };
   const options = {
-    expiresIn: "1h",
+    expiresIn: "4h",
     jwtid: "12345"
   };
   return jwt.sign(payload, jwtKey, options);

@@ -1,11 +1,7 @@
-const db = require("../../data/dbConfig.js");
-const users = require("../../models/users/userModel");
+const db = require("../data/dbConfig.js");
+const users = require("../models/userModel");
 const bcrypt = require("bcryptjs");
-const {
-  authenticate,
-  requireAdmin,
-  generateToken
-} = require("../../auth/authenticate");
+const { requireAdmin, generateToken } = require("../auth/authenticate");
 
 module.exports = server => {
   server.post("/users/register", register);
@@ -16,29 +12,38 @@ module.exports = server => {
 //requires an object with all required user keys. stores password in a hash, returns an object containing username, name, loc, role, and a token.
 function register(req, res) {
   const creds = req.body;
-  const hash = bcrypt.hashSync(creds.password, 16);
-  creds.password = hash;
-  users
-    .newUser(creds)
-    .then(users => {
-      const user = users[0];
-      const token = generateToken(user);
-      console.log(user);
-      res.status(201).json({
-        username: user.username,
-        name: user.name,
-        location: user.loc_id,
-        role: user.role_id,
-        token: token
+  if (
+    creds.username &&
+    creds.password &&
+    creds.name &&
+    creds.email &&
+    creds.role_id &&
+    creds.title
+  ) {
+    const hash = bcrypt.hashSync(creds.password, 16);
+    creds.password = hash;
+    users
+      .newUser(creds)
+      .then(users => {
+        const user = users[0];
+        const token = generateToken(user);
+        res.status(201).json({
+          username: user.username,
+          name: user.name,
+          location: user.loc_id,
+          role: user.role_id,
+          token: token
+        });
+      })
+      .catch(err => {
+        res.status(500).send(err);
       });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send(err);
-    });
+  } else {
+    res.status(400).json({ message: "all fields are required" });
+  }
 }
 
-//requires a username and password. returns a message and a token.
+//requires a username and password. returns user data and a token.
 function login(req, res) {
   const credentials = req.body;
   db("users")
@@ -47,13 +52,19 @@ function login(req, res) {
     .then(user => {
       if (user && bcrypt.compareSync(credentials.password, user.password)) {
         const token = generateToken(user);
-        res.status(200).json({ message: `Welcome ${user.username}`, token });
+        res.status(200).json({
+          username: user.username,
+          name: user.name,
+          location: user.loc_id,
+          role: user.role_id,
+          token: token
+        });
       } else {
         res.status(401).json({ message: "access denied" });
       }
     })
     .catch(err => {
-      res.status(500).send(err);
+      res.status(400).send(err);
     });
 }
 

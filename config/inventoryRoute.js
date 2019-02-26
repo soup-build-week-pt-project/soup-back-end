@@ -1,5 +1,6 @@
-const inventory = require("../../models/inventory/inventoryModel");
-const { requireAdmin } = require("../../auth/authenticate");
+const db = require("../data/dbConfig.js");
+const inventory = require("../models/inventoryModel");
+const { requireAdmin } = require("../auth/authenticate");
 
 module.exports = server => {
   server.get("/inventory/:id", requireAdmin, getByLoc),
@@ -16,8 +17,9 @@ function getByLoc(req, res) {
   const { id } = req.params;
   inventory
     .getInventoryByLocation(id)
-    .then(items => {
+    .then(async items => {
       if (items.length) {
+        items = await inventory.getCats(items);
         res.status(200).json(items);
       } else {
         res.status(404).json({ message: "No items for that location." });
@@ -38,7 +40,15 @@ function getItemById(req, res) {
       if (items.length) {
         let result = items.filter(inv => inv.id == item);
         if (result.length) {
-          res.status(200).json(result);
+          db("categories")
+            .where("id", result[0].category_id)
+            .then(cat => {
+              result[0].category_id = cat[0].category;
+              res.status(200).json(result);
+            })
+            .catch(err => {
+              res.status(400).json({ message: "category id not found" });
+            });
         } else {
           res.status(404).json({ message: "Item ID not found" });
         }
@@ -58,9 +68,17 @@ function newItem(req, res) {
   if (item.location_id == id) {
     inventory
       .newItem(item)
-      .then(response => {
-        if (response) {
-          res.status(201).json(response);
+      .then(item => {
+        if (item.length) {
+          db("categories")
+            .where("id", item[0].category_id)
+            .then(cat => {
+              item[0].category_id = cat[0].category;
+              res.status(201).json(item);
+            })
+            .catch(err => {
+              res.status(400).json({ message: "category id not found" });
+            });
         } else {
           res.status(400).json({ message: "failed to create new item" });
         }
@@ -75,7 +93,7 @@ function newItem(req, res) {
   }
 }
 
-//requires an item id and an updated item. returns updated item as a single object.
+//requires an item id and an updated item. returns updated item as an array.
 function updateItem(req, res) {
   const { item } = req.params;
   const updated = req.body;
@@ -83,7 +101,15 @@ function updateItem(req, res) {
     .updateInventory(item, updated)
     .then(item => {
       if (item.length) {
-        res.status(202).json(item[0]);
+        db("categories")
+          .where("id", item[0].category_id)
+          .then(cat => {
+            item[0].category_id = cat[0].category;
+            res.status(202).json(item[0]);
+          })
+          .catch(err => {
+            res.status(400).json({ message: "category id not found" });
+          });
       } else {
         res.status(400).json({ message: "record not updated" });
       }

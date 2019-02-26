@@ -1,5 +1,5 @@
-const locations = require("../../models/locations/locationModel");
-const { authenticate } = require("../../auth/authenticate");
+const locations = require("../models/locationModel");
+const { authenticate } = require("../auth/authenticate");
 
 module.exports = server => {
   server.get("/locations", authenticate, getLocations);

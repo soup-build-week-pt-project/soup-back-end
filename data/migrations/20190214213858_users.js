@@ -9,6 +9,10 @@ exports.up = function(knex, Promise) {
       .unique();
     tbl.string("password", 255).notNullable();
     tbl
+      .string("email", 255)
+      .notNullable()
+      .unique();
+    tbl
       .integer("role_id")
       .unsigned()
       .notNullable();
@@ -16,11 +20,11 @@ exports.up = function(knex, Promise) {
     tbl
       .foreign("role_id")
       .references("id")
-      .on("roles");
+      .inTable("roles");
     tbl
       .foreign("loc_id")
       .references("id")
-      .on("locations");
+      .inTable("locations");
   });
 };
 
